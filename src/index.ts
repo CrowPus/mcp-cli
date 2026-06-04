@@ -19,7 +19,7 @@ import {
   GetPromptResultSchema,
 } from "@modelcontextprotocol/sdk/types.js";
 // @ts-ignore
-import { EventSource } from "eventsource";
+import EventSource from "eventsource";
 import fs from "fs";
 import os from "os";
 import path from "path";
