@@ -1,0 +1,22 @@
+{
+  "name": "@crowpus/mcp-cli",
+  "version": "1.0.0",
+  "description": "Universal stdio-to-SSE bridge and setup tool for Crowpus MCP Server",
+  "main": "dist/index.js",
+  "type": "module",
+  "bin": {
+    "crowpus-mcp": "./dist/index.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/index.js"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.0.1",
+    "eventsource": "^2.0.2"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.0",
+    "typescript": "^5.3.3"
+  }
+}
