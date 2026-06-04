@@ -85,6 +85,6 @@ AI agent platforms natively support connecting to MCP servers that run as local 
 The `@crowpus/mcp-cli` acts as a local proxy. 
 
 1. The AI Agent boots the bridge command (`npx @crowpus/mcp-cli run`).
-2. The local bridge reads the stored token and opens a persistent Server-Sent Events (SSE) connection to `https://mcp.crowpus.dev/mcp/`.
+2. The local bridge reads the stored token and opens a secure connection to `https://mcp.crowpus.dev/mcp` using Streamable HTTP/SSE.
 3. It fetches the remote tools and registers them locally.
 4. When the agent calls a tool, the bridge forwards the call to the remote cloud server and returns the results.
