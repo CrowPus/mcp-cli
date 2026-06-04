@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 import { Client } from "@modelcontextprotocol/sdk/client/index.js";
-import { SSEClientTransport } from "@modelcontextprotocol/sdk/client/sse.js";
+import { StreamableHTTPClientTransport } from "@modelcontextprotocol/sdk/client/streamableHttp.js";
 import { Server } from "@modelcontextprotocol/sdk/server/index.js";
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
 import {
@@ -58,7 +58,10 @@ async function handleRun(): Promise<void> {
     process.exit(1);
   }
 
-  const baseUrl = config.baseUrl || process.env.CROWPUS_MCP_BACKEND_URL || "https://mcp.crowpus.dev/mcp/";
+  let baseUrl = config.baseUrl || process.env.CROWPUS_MCP_BACKEND_URL || "https://mcp.crowpus.dev/mcp";
+  if (baseUrl.endsWith("/")) {
+    baseUrl = baseUrl.slice(0, -1);
+  }
   console.error(`Connecting to remote Crowpus MCP Server at ${baseUrl}...`);
 
   const client = new Client(
@@ -66,17 +69,12 @@ async function handleRun(): Promise<void> {
     { capabilities: {} }
   );
 
-  const transport = new SSEClientTransport(new URL(baseUrl), {
+  const transport = new StreamableHTTPClientTransport(new URL(baseUrl), {
     requestInit: {
       headers: {
         Authorization: `Bearer ${token}`,
       },
     },
-    eventSourceInit: {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    } as any,
   });
 
   try {
