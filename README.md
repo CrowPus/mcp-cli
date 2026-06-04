@@ -30,7 +30,7 @@ Clone the repository and install the dependencies:
 ```bash
 # Clone the repository
 git clone https://github.com/CrowPus/mcp-cli.git
-cd crowpus-mcp-cli
+cd mcp-cli
 
 # Install dependencies
 npm install
