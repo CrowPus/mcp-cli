@@ -18,15 +18,10 @@ import {
   ListPromptsResultSchema,
   GetPromptResultSchema,
 } from "@modelcontextprotocol/sdk/types.js";
-// @ts-ignore
-import EventSource from "eventsource";
 import fs from "fs";
 import os from "os";
 import path from "path";
 import { loadConfig, saveConfig } from "./config.js";
-
-// Polyfill EventSource for Model Context Protocol SDK SSE Client
-(globalThis as any).EventSource = EventSource;
 
 function printHelp(): void {
   console.log(`
@@ -127,10 +122,10 @@ async function handleRun(): Promise<void> {
   const cleanup = async () => {
     try {
       await client.close();
-    } catch (e) {}
+    } catch (e) { }
     try {
       await server.close();
-    } catch (e) {}
+    } catch (e) { }
     process.exit(0);
   };
 
